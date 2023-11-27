@@ -12,7 +12,8 @@ public class Solution extends VersionControl {
         boolean status;
 
         while (i <= j) {
-            middle = (i + j) / 2;
+            // middle = (i + j) / 2;
+            middle = i + (j - i) / 2;
             status = isBadVersion(middle);
 
             if (status) {
