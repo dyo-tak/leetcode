@@ -1,19 +1,31 @@
 class Solution {
     public int longestPalindrome(String s) {
-                
-    }
-    
-    public boolean isPalindrome(String s) {
-        if (s == "")
-            return false;
+        int[] alphabets = new int[58];
+        boolean odd = false;
+        char[] stringArray = s.toCharArray();
+        int length = 0;
 
-        String givenString = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-        String reverseString = "";
-
-        for (int i = 0; i < givenString.length(); i++) {
-            reverseString = givenString.charAt(i) + reverseString;
+        for (char c : stringArray) {
+            alphabets[c - 'A']++;
         }
-        return givenString.equals(reverseString);
+
+        for (int i : alphabets) {
+            if (i == 0) continue;
+
+            if(i % 2 == 1) {
+                if(!odd) {
+                    length += i;
+                    odd = true;
+                } else {
+
+                    length += i - 1;
+                }
+
+            } else {
+                length += i;
+            }
+        }
+
+        return length;
     }
-    
 }
